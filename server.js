@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
-const port = process.env.PORT || 4200;
+const port = process.env.PORT || 3000;
 
 app.listen(port, () => console.log(`Server is running on port ${port}`));
 
@@ -28,6 +28,7 @@ app.use(cors({
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.use('/api/questions', require('./routes/questions'));
 
 const db = process.env.DB_ACCESS;
 
@@ -37,7 +38,7 @@ mongoose.connect(db)
 
 app.use((req, res, next) => {
     const apiKey = req.headers['apikey'];
-    if (apiKey === '21f1aac7-9965-41f9-b88c-b5a4ed4636cb') {
+    if (apiKey === process.env.API_KEY) {
         next();
     } else {
         res.status(401).send('Unauthorized');
