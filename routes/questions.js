@@ -21,6 +21,11 @@ const QuestionSchema = new mongoose.Schema({
     FR: { type: LanguageContentSchema, required: false },
     EN: { type: LanguageContentSchema, required: false },
     ES: { type: LanguageContentSchema, required: false },
+    DE: { type: LanguageContentSchema, required: false }, // Langue allemande
+    RU: { type: LanguageContentSchema, required: false }, // Langue russe
+    AR: { type: LanguageContentSchema, required: false }, // Langue arabe
+    ZH: { type: LanguageContentSchema, required: false }, // Langue chinoise
+    JA: { type: LanguageContentSchema, required: false }, // Langue japonaise
 });
 
 // Create the Mongoose model from the schema
@@ -29,7 +34,7 @@ const QuestionModel = mongoose.model('Question', QuestionSchema);
 // GET route to fetch 5 random questions in a specific language
 router.get('/:lang', async (req, res) => {
     const lang = req.params.lang.toUpperCase();
-    if (!['FR', 'EN', 'ES'].includes(lang)) {
+    if (!['FR', 'EN', 'ES', 'DE', 'RU', 'AR', 'ZH', 'JA'].includes(lang)) {
         return res.status(400).send('Invalid language code');
     }
 
