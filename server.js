@@ -12,6 +12,11 @@ app.listen(port, () => console.log(`Server is running on port ${port}`));
 const allowedOrigins = [
     'http://localhost:4200',
     'http://localhost:3000',
+    'http://5.135.148.127',
+    'http://ndi-deploy.fr',
+    'http://www.ndi-deploy.fr',
+    'https://ndi-deploy.fr',
+    'https://www.ndi-deploy.fr'
 ];
 
 app.use(cors({
